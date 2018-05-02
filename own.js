@@ -1,14 +1,17 @@
 "use strict";
 
-//settings
+//config
+const adopt = "adopt";
+const unadopt = "let_go";
+const action = adopt;
 var note = ["2113478","2113496"];
 var host = 'tatoeba.org';
-//var cookie = 'CAKEPHP=l59qnjb7o8e3te688uojqbmav1; CakeCookie[interfaceLanguage]=por; CakeCookie[interfaceLanguage]=por; CakeCookie[User]=username%7Ccorpus_maintainer%2Cpassword%7Cdc59e60a5353bf329d0c961185055226; CakeCookie[contribute_lang]=jbo';
 //FB
 var cookie = 'CakeCookie[interfaceLanguage]=por; CakeCookie[User]=username%7CFB%2Cpassword%7C5a0cb3e5f18db5f9baffbe9c9782a0f8; CakeCookie[contribute_lang]=jbo; CAKEPHP=khn6dfov5vte4usa7n74cil5e3; ';
 //gleki
 //var cookie = 'CakeCookie[interfaceLanguage]=por; CakeCookie[User]=username%7Cgleki%2Cpassword%7Cd7753445982bc2db494987cd5216ab16; CakeCookie[contribute_lang]=jbo; CAKEPHP=97j4p0egh9vqsfbhabpg9j9ff1; ';
-var url = 'https://'+host+'/eng/sentences/adopt/';//let_go
+
+var url = 'https://'+host+'/eng/sentences/'+action+'/';
 
 var fs = require("fs"),path = require("path-extra");
 var request = require("request");
@@ -18,7 +21,7 @@ function add(id,target){
 	var headers = { 
 		'authority': 'tatoeba.org',
 		'method' : 'GET' ,
-		'path' : '/eng/sentences/adopt/'+id,
+		'path' : '/eng/sentences/'+action+'/'+id,
 		'scheme' : 'https',
 		'accept' : '*/*',
 		//'content-type' : 'application/x-www-form-urlencoded; charset=UTF-8',
@@ -65,3 +68,7 @@ function* waitAndDo(times) {
 co(function* () {
   yield waitAndDo(Object.keys(ki).length);//
 });
+
+
+//trash
+//var cookie = 'CAKEPHP=l59qnjb7o8e3te688uojqbmav1; CakeCookie[interfaceLanguage]=por; CakeCookie[interfaceLanguage]=por; CakeCookie[User]=username%7Ccorpus_maintainer%2Cpassword%7Cdc59e60a5353bf329d0c961185055226; CakeCookie[contribute_lang]=jbo';
